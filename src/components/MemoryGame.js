@@ -9,16 +9,16 @@ import WinPopup from './WinPopup';
 const MemoryGame = () => {
   // You'll replace these with your actual image paths
   const initialCards = [
-    { id: 1, img: '/assets/image1.jpg', matched: false },
-    { id: 2, img: '/assets/image2.jpg', matched: false },
-    { id: 3, img: '/assets/image3.jpg', matched: false },
-    { id: 4, img: '/assets/image4.jpg', matched: false },
-    { id: 5, img: '/assets/image5.jpg', matched: false },
-    { id: 6, img: '/assets/image6.jpg', matched: false },
-    { id: 7, img: '/assets/image7.jpg', matched: false },
-    { id: 8, img: '/assets/image8.jpg', matched: false },
-    { id: 9, img: '/assets/image9.jpg', matched: false },
-    { id: 10, img: '/assets/image10.jpg', matched: false },
+    { id: 1, img: '/assets/image1.png', matched: false },
+    { id: 2, img: '/assets/image2.png', matched: false },
+    { id: 3, img: '/assets/image3.png', matched: false },
+    { id: 4, img: '/assets/image4.png', matched: false },
+    { id: 5, img: '/assets/image5.png', matched: false },
+    { id: 6, img: '/assets/image6.png', matched: false },
+    { id: 7, img: '/assets/image7.png', matched: false },
+    { id: 8, img: '/assets/image8.png', matched: false },
+    { id: 9, img: '/assets/image9.png', matched: false },
+    { id: 10, img: '/assets/image10.png', matched: false },
   ];
 
   const [cards, setCards] = useState([]);
