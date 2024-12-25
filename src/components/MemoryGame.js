@@ -9,7 +9,7 @@ import WinPopup from './WinPopup';
 const MemoryGame = () => {
   // You'll replace these with your actual image paths
   const initialCards = [
-    { id: 1, img: '/assets/image1.png', matched: false },
+    { id: 1, img: '/assets/image1.jpg', matched: false },
     { id: 2, img: '/assets/image2.jpg', matched: false },
     { id: 3, img: '/assets/image3.jpg', matched: false },
     { id: 4, img: '/assets/image4.jpg', matched: false },
@@ -176,9 +176,11 @@ const MemoryGame = () => {
                   className={`absolute w-full h-full backface-hidden transition-transform duration-500
                     ${isFlipped(card) ? 'rotate-y-0' : 'rotate-y-180'}`}
                 >
-                  <img
+                  <Image
                     src={card.img}
                     alt="card front"
+                    width={200}
+                    height={200}
                     className="w-full h-full object-cover rounded-md sm:rounded-lg border border-pink-300 sm:border-2"
                   />
                 </div>
