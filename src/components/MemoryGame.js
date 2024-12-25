@@ -176,12 +176,11 @@ const MemoryGame = () => {
                   className={`absolute w-full h-full backface-hidden transition-transform duration-500
                     ${isFlipped(card) ? 'rotate-y-0' : 'rotate-y-180'}`}
                 >
-                  <Image
+                  <img
                     src={card.img}
-                    alt="card front"
-                    width={200}
-                    height={200}
+                    alt="Memory Card"
                     className="w-full h-full object-cover rounded-md sm:rounded-lg border border-pink-300 sm:border-2"
+                    loading="eager"
                   />
                 </div>
                 <div 
