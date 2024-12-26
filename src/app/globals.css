@@ -31,6 +31,7 @@ body {
 
 .backface-hidden {
   backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
 }
 
 .rotate-y-0 {
@@ -43,14 +44,14 @@ body {
 
 @keyframes bounce {
   0%, 100% {
-    transform: translateY(0);
+    transform: scale(1);
   }
   50% {
-    transform: translateY(-20px);
+    transform: scale(1.1);
   }
 }
 
-.animate-bounce {
+.card-matched {
   animation: bounce 0.5s ease-in-out;
 }
 
