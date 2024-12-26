@@ -4,10 +4,6 @@ import React, { useState, useEffect } from 'react';
 import { Heart, Star, Music, Sparkle } from 'lucide-react';
 import styles from './PatternGame.module.css';
 
-// Game result sounds
-const VICTORY_SOUND = new Audio('/assets/outro.mp3');
-const FAILURE_SOUND = new Audio('/assets/meow.mp3');
-
 const SHAPES = [
   { 
     id: 0, 
@@ -39,14 +35,6 @@ const SHAPES = [
   }
 ];
 
-// Create audio objects for each sound
-const audioElements = SHAPES.reduce((acc, shape) => {
-  if (typeof window !== 'undefined') {
-    acc[shape.id] = new Audio(shape.sound);
-  }
-  return acc;
-}, {});
-
 const PATTERNS = [
   [0],                              // Round 1: Single
   [0, 1],                          // Round 2: Two in a row
@@ -58,23 +46,6 @@ const PATTERNS = [
   [0, 1, 0, 1],                    // Round 8: Alternating
   [2, 2, 3, 3],                    // Round 9: Double pairs
   [0, 1, 2, 3, 1],                 // Round 10: Five mixed
-  /* Commented out for easier gameplay
-  [3, 2, 2, 1, 0],                 // Round 11: Five with repeat
-  [0, 0, 1, 1, 2],                 // Round 12: Double hits
-  [3, 2, 1, 0, 3, 2],             // Round 13: Six sequence
-  [0, 1, 1, 2, 2, 3],             // Round 14: Double steps
-  [3, 3, 3, 2, 1, 0],             // Round 15: Triple start
-  [0, 1, 2, 3, 3, 2, 1],          // Round 16: Seven with backtrack
-  [2, 2, 1, 1, 3, 3, 0],          // Round 17: Double pairs plus one
-  [0, 1, 2, 3, 2, 1, 0, 3],       // Round 18: Eight with loop
-  [3, 3, 2, 2, 1, 1, 0, 0],       // Round 19: Double pairs sequence
-  [0, 1, 2, 3, 3, 2, 1, 0, 1],    // Round 20: Nine with loop back
-  [2, 2, 3, 3, 1, 1, 0, 0, 2],    // Round 21: Double pairs plus extra
-  [0, 1, 2, 3, 2, 1, 0, 3, 1, 2], // Round 22: Ten mixed
-  [3, 3, 2, 2, 1, 1, 0, 0, 3, 2], // Round 23: Double pairs finale
-  [0, 1, 2, 3, 3, 2, 1, 0, 0, 1, 2], // Round 24: Eleven with double
-  [3, 2, 1, 0, 0, 1, 2, 3, 3, 2, 1, 0] // Round 25: Grand finale
-  */
 ];
 
 const PatternGame = () => {
@@ -84,12 +55,28 @@ const PatternGame = () => {
   const [playerInputs, setPlayerInputs] = useState([]);
   const [activeShape, setActiveShape] = useState(null);
   const [showModal, setShowModal] = useState(false);
+  const [audioElements, setAudioElements] = useState({});
+  const [gameAudio, setGameAudio] = useState({ victory: null, failure: null });
+
+  // Initialize audio on client side only
+  useEffect(() => {
+    const shapeAudio = SHAPES.reduce((acc, shape) => {
+      acc[shape.id] = new Audio(shape.sound);
+      return acc;
+    }, {});
+
+    setAudioElements(shapeAudio);
+    setGameAudio({
+      victory: new Audio('/assets/outro.mp3'),
+      failure: new Audio('/assets/meow.mp3')
+    });
+  }, []);
 
   const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
   const playSound = (shapeId) => {
     if (audioElements[shapeId]) {
-      audioElements[shapeId].currentTime = 0; // Reset sound to start
+      audioElements[shapeId].currentTime = 0;
       audioElements[shapeId].play();
     }
   };
@@ -112,21 +99,17 @@ const PatternGame = () => {
   };
 
   const startGame = async () => {
-    // Reset all game state
     setGameState('showing');
     setRound(0);
     setPlayerInputs([]);
     setCurrentPattern([]);
     setActiveShape(null);
     
-    // Small delay before starting
     await sleep(500);
     
-    // Start with first pattern
     const firstPattern = PATTERNS[0];
     setCurrentPattern(firstPattern);
     
-    // Show first pattern
     for (const shapeId of firstPattern) {
       setActiveShape(shapeId);
       playSound(shapeId);
@@ -141,7 +124,6 @@ const PatternGame = () => {
   const handleShapeClick = async (shapeId) => {
     if (gameState !== 'input') return;
 
-    // Visual feedback and sound
     setActiveShape(shapeId);
     playSound(shapeId);
     await sleep(200);
@@ -150,18 +132,20 @@ const PatternGame = () => {
     const newInputs = [...playerInputs, shapeId];
     setPlayerInputs(newInputs);
 
-    // Check if incorrect
     if (shapeId !== currentPattern[playerInputs.length]) {
-      FAILURE_SOUND.play();
+      if (gameAudio.failure) {
+        gameAudio.failure.play();
+      }
       setGameState('failure');
       setShowModal(true);
       return;
     }
 
-    // Check if round complete
     if (newInputs.length === currentPattern.length) {
       if (round === PATTERNS.length - 1) {
-        VICTORY_SOUND.play();
+        if (gameAudio.victory) {
+          gameAudio.victory.play();
+        }
         setGameState('success');
         setShowModal(true);
       } else {
