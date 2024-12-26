@@ -134,7 +134,7 @@ const questions = [
   {
     id: 10,
     question: "Who is my favorite person in the whole world?",
-    image: "/assets/meandyou.jpg", // Optional image
+    image: "/assets/you.jpg", // Optional image
     options: [
       "You",
       "Me",
