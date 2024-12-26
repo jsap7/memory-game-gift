@@ -3,9 +3,9 @@
 import Link from 'next/link';
 import { Heart } from 'lucide-react';
 import PragueTimer from '@/components/PragueTimer';
-import MemoryGame from '@/games/memory-game/MemoryGame';
+import PatternGame from '@/games/pattern-game/PatternGame';
 
-export default function Home() {
+export default function PatternGamePage() {
   return (
     <main className="min-h-screen bg-[#F5F5F1] p-4">
       <div className="max-w-5xl mx-auto">
@@ -14,7 +14,7 @@ export default function Home() {
         <div className="flex justify-center gap-4 mb-8">
           <Link 
             href="/"
-            className="bg-pink-500 text-white px-4 py-2 rounded-md hover:bg-pink-600 transition-colors"
+            className="bg-white text-pink-600 px-4 py-2 rounded-md hover:bg-pink-50 transition-colors border border-pink-200"
           >
             Remy Memy Game
           </Link>
@@ -26,14 +26,14 @@ export default function Home() {
           </Link>
           <Link 
             href="/games/pattern"
-            className="bg-white text-pink-600 px-4 py-2 rounded-md hover:bg-pink-50 transition-colors border border-pink-200"
+            className="bg-pink-500 text-white px-4 py-2 rounded-md hover:bg-pink-600 transition-colors"
           >
             Pattern Game
           </Link>
         </div>
 
-        <MemoryGame />
+        <PatternGame />
       </div>
     </main>
   );
-}
+} 
