@@ -1,11 +1,10 @@
 'use client';
 
 import Link from 'next/link';
-import { Heart } from 'lucide-react';
+import WordleGame from '@/games/wordle-game/WordleGame';
 import PragueTimer from '@/components/PragueTimer';
-import MemoryGame from '@/games/memory-game/MemoryGame';
 
-export default function Home() {
+export default function WordlePage() {
   return (
     <main className="min-h-screen bg-[#F5F5F1] p-4">
       <div className="max-w-5xl mx-auto">
@@ -38,8 +37,8 @@ export default function Home() {
           </Link>
         </div>
 
-        <MemoryGame />
+        <WordleGame />
       </div>
     </main>
   );
-}
+} 
