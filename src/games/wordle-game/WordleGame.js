@@ -12,20 +12,11 @@ const KEYBOARD_LAYOUT = [
   ['ENTER', 'Z', 'X', 'C', 'V', 'B', 'N', 'M', '⌫']
 ]
 
-// Updated word list - more general words
+// Simplified word list with common 5-letter words
 const WORDS = [
   'WORLD', 'DREAM', 'SMILE', 'PEACE', 'LIGHT', 'MUSIC', 'DANCE', 'LAUGH', 'SHINE', 'SPARK',
-  'BRAVE', 'GRACE', 'HOPE', 'TRUST', 'UNITY', 'HONOR', 'PRIDE', 'GLORY', 'POWER', 'FAITH',
-  'HAPPY', 'JOYFUL', 'KINDY', 'LOVEL', 'SMART', 'WISER', 'STRUM', 'GREAT', 'BRIGH', 'CLEAR',
-  'CALMS', 'QUIET', 'SOFTY', 'GENTL', 'SWEET', 'PURES', 'NEATS', 'CLEAS', 'FRESH',
-  'QUICK', 'FASTY', 'SPEED', 'RUSHY', 'HASTE', 'FLYER', 'ZOOMS', 'DASHY', 'RACER', 'SWIFT',
-  'BOLDS', 'DARES', 'FEARS', 'VALOR', 'CORGI', 'HEROS', 'NOBLE', 'MIGHT', 'STALE',
-  'SHINY', 'GLOWY', 'GLEAM', 'TWINK', 'RADIA', 'LUMEN', 'VIVID', 'VIBRA', 'CHEER',
-  'MERRY', 'JOLLY', 'GLEEK', 'BLISS', 'ADORE', 'STILL', 'HARMY',
-  'RELAX', 'TUNES', 'BEATS', 'TEMPO', 'SONGS', 'SOUND', 'NOTES', 'MOVES', 'SWAYS',
-  'TWIRL', 'SPINS', 'JUMPS', 'HOPES', 'BOUNC', 'LEAPS', 'STEPS', 'GIGGL', 'CHUCK', 'SNICK',
-  'ROARS', 'HOWLS', 'SNORT', 'BEAMS', 'RADIY', 'GLINT',
-  'GLIST', 'FLASH', 'FLARE', 'FLAME', 'FIRES', 'BLAZE', 'TORCH', 'HEATS', 'BURNS'
+  'BRAVE', 'GRACE', 'TRUST', 'POWER', 'HAPPY', 'SMART', 'CLEAR', 'QUICK', 'SPEED', 'SWIFT',
+  'NOBLE', 'SOUND', 'NOTES', 'MOVES', 'STEPS', 'FLASH', 'FLAME', 'BLAZE', 'HEART', 'MIND'
 ]
 
 export default function WordleGame() {
@@ -37,22 +28,17 @@ export default function WordleGame() {
   const [shake, setShake] = useState(false)
   const [stats, setStats] = useState({ played: 0, won: 0, streak: 0, maxStreak: 0 })
 
-  // Load stats from localStorage on mount
   useEffect(() => {
     const savedStats = localStorage.getItem('wordleStats')
     if (savedStats) {
       setStats(JSON.parse(savedStats))
     }
+    setTargetWord(WORDS[Math.floor(Math.random() * WORDS.length)])
   }, [])
 
-  // Save stats to localStorage when they change
   useEffect(() => {
     localStorage.setItem('wordleStats', JSON.stringify(stats))
   }, [stats])
-
-  useEffect(() => {
-    setTargetWord(WORDS[Math.floor(Math.random() * WORDS.length)])
-  }, [])
 
   const handleKeyPress = (key) => {
     if (gameOver) return
@@ -69,10 +55,7 @@ export default function WordleGame() {
   }
 
   useEffect(() => {
-    const handleKeyDown = (event) => {
-      handleKeyPress(event.key)
-    }
-
+    const handleKeyDown = (event) => handleKeyPress(event.key)
     window.addEventListener('keydown', handleKeyDown)
     return () => window.removeEventListener('keydown', handleKeyDown)
   }, [currentPosition, currentAttempt, gameOver])
@@ -94,7 +77,6 @@ export default function WordleGame() {
   const checkWord = () => {
     const attempt = board[currentAttempt].join('')
     
-    // Only validate that it's a 5-letter word
     if (attempt.length !== 5) {
       setShake(true)
       setTimeout(() => setShake(false), 250)
@@ -130,13 +112,8 @@ export default function WordleGame() {
     if (row >= currentAttempt) return styles.empty
     
     const letter = board[row][col]
-    const word = board[row].join('')
-
-    if (word === targetWord) {
-      return styles.correct
-    }
-
     const targetLetter = targetWord[col]
+
     if (letter === targetLetter) {
       return styles.correct
     } else if (targetWord.includes(letter)) {
@@ -147,19 +124,15 @@ export default function WordleGame() {
   }
 
   const resetGame = () => {
-    const newBoard = Array(MAX_ATTEMPTS).fill().map(() => Array(WORD_LENGTH).fill(''))
-    setBoard(newBoard)
+    setBoard(Array(MAX_ATTEMPTS).fill().map(() => Array(WORD_LENGTH).fill('')))
     setCurrentAttempt(0)
     setCurrentPosition(0)
     setGameOver(false)
-    const newWord = WORDS[Math.floor(Math.random() * WORDS.length)]
-    setTargetWord(newWord)
+    setTargetWord(WORDS[Math.floor(Math.random() * WORDS.length)])
   }
 
   return (
     <div className={styles.container}>
-      <h1 className={styles.title}>Wordle</h1>
-      
       <div className={styles.stats}>
         <div className={styles.statItem}>
           <span className={styles.statValue}>{stats.played}</span>
@@ -216,10 +189,7 @@ export default function WordleGame() {
         <div className={styles.gameOver}>
           <p>{board[currentAttempt].join('') === targetWord ? 
             'Congratulations!' : `Game Over! The word was ${targetWord}`}</p>
-          <button 
-            onClick={resetGame}
-            className={styles.playAgain}
-          >
+          <button onClick={resetGame} className={styles.playAgain}>
             Play Again
           </button>
         </div>
