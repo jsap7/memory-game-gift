@@ -4,6 +4,8 @@ import React from 'react';
 import { Heart } from 'lucide-react';
 import styles from './MemoryGame.module.css';
 
+// WinPopup.js
+
 const WinPopup = ({ turns, onPlayAgain }) => {
   return (
     <div className="fixed inset-0 bg-black/75 backdrop-blur-sm flex items-center justify-center z-[1000]">
