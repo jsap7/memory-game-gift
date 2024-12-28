@@ -2,8 +2,53 @@
 
 import Link from 'next/link';
 import FlipTimer from '@/components/shared/FlipTimer';
+import SpotifyPlayer from '@/components/shared/SpotifyPlayer';
+import { useEffect, useState } from 'react';
+
+const Sparkle = ({ style }) => (
+  <div
+    style={{
+      position: 'fixed',
+      pointerEvents: 'none',
+      width: '10px',
+      height: '10px',
+      background: 'white',
+      borderRadius: '50%',
+      ...style
+    }}
+  />
+);
 
 export default function Home() {
+  const [sparkles, setSparkles] = useState([]);
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+
+  useEffect(() => {
+    const handleMouseMove = (e) => {
+      setMousePosition({ x: e.clientX, y: e.clientY });
+      
+      // Create a new sparkle
+      const sparkle = {
+        id: Date.now(),
+        x: e.clientX,
+        y: e.clientY,
+        size: Math.random() * 15 + 5,
+        opacity: 1,
+        color: `rgba(255, ${Math.random() * 100 + 100}, ${Math.random() * 100 + 100}, ${Math.random() * 0.5 + 0.5})`
+      };
+
+      setSparkles(prev => [...prev, sparkle]);
+
+      // Remove sparkle after animation
+      setTimeout(() => {
+        setSparkles(prev => prev.filter(s => s.id !== sparkle.id));
+      }, 1000);
+    };
+
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, []);
+
   return (
     <div className="app-container">
       <div className="content-wrapper">
@@ -33,6 +78,23 @@ export default function Home() {
           </Link>
         </div>
       </div>
+
+      <SpotifyPlayer />
+
+      {sparkles.map(sparkle => (
+        <Sparkle
+          key={sparkle.id}
+          style={{
+            left: sparkle.x,
+            top: sparkle.y,
+            width: sparkle.size,
+            height: sparkle.size,
+            background: sparkle.color,
+            transform: 'translate(-50%, -50%)',
+            animation: 'sparkle 1s forwards'
+          }}
+        />
+      ))}
     </div>
   );
 }
