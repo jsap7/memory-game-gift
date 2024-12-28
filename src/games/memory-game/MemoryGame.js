@@ -3,7 +3,6 @@
 import React, { useState, useEffect } from 'react';
 import { Heart } from 'lucide-react';
 import WinPopup from './WinPopup';
-import FlipTimer from './FlipTimer';
 import styles from './MemoryGame.module.css';
 
 const MemoryGame = () => {
@@ -93,11 +92,7 @@ const MemoryGame = () => {
       <div className={styles.container}>
         <div className={styles.header}>
           <h1 className={styles.title}>
-            <Heart className="w-6 h-6 sm:w-8 sm:h-8 text-pink-500" />
-            Remy Memy Game
-            <Heart className="w-6 h-6 sm:w-8 sm:h-8 text-pink-500" />
           </h1>
-          <FlipTimer />
           <div className={styles.stats}>
             Turns: {turns}
           </div>
