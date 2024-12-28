@@ -4,13 +4,15 @@
   align-items: center;
   gap: 1rem;
   margin: 1.5rem auto;
-  max-width: 800px;
   width: 100%;
+  max-width: 400px;
+  text-align: center;
 }
 
 .timerTitle {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 0.5rem;
   color: #FF1493;
   font-weight: 700;
@@ -19,6 +21,7 @@
   padding: 0.5rem 1rem;
   border-radius: 9999px;
   box-shadow: 0 2px 8px rgba(255, 182, 193, 0.2);
+  margin: 0 auto;
 }
 
 .timerTitle h2 {
@@ -34,10 +37,39 @@
   color: #FF69B4;
 }
 
-.flipTimer {
+.countdownDisplay {
   display: flex;
+  gap: 1rem;
   justify-content: center;
   align-items: center;
+}
+
+.timeUnit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.number {
+  background: #2D2D2D;
+  color: white;
+  font-family: var(--font-geist-mono);
+  font-size: 30px;
+  font-weight: 600;
+  padding: 15px;
+  border-radius: 4px;
+  min-width: 60px;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.label {
+  font-size: 10px;
+  font-weight: 500;
+  color: #666;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 @media (min-width: 640px) {
@@ -50,88 +82,14 @@
     width: 1.5rem;
     height: 1.5rem;
   }
-} 
 
-/* Loading animation styles */
-.loadingNumbers {
-  display: flex;
-  gap: 0.75rem;
-  align-items: center;
-}
-
-.loadingCard {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.5rem;
-  animation: fadeIn 0.3s ease-out;
-}
-
-.loadingDigits {
-  background: #2D2D2D;
-  color: white;
-  font-family: var(--font-geist-mono);
-  font-size: 30px;
-  font-weight: 600;
-  padding: 15px 10px;
-  border-radius: 4px;
-  min-width: 40px;
-  text-align: center;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  transition: all 0.05s ease;
-}
-
-.loadingLabel {
-  font-size: 10px;
-  font-weight: 500;
-  color: #666;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Override flip clock styles */
-.flipTimer :global(.flip-clock) {
-  --flip-bg-color: #2D2D2D;
-  --flip-text-color: white;
-  --flip-border-radius: 4px;
-  --flip-width: 40px;
-  --flip-height: 60px;
-  --flip-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  --flip-active-bg: #FF69B4;
-}
-
-.flipTimer :global(.flip-clock-card) {
-  border-radius: var(--flip-border-radius);
-  box-shadow: var(--flip-shadow);
-}
-
-.flipTimer :global(.flip-clock-card.flip) {
-  box-shadow: var(--flip-shadow), inset 0 0 10px rgba(255, 105, 180, 0.2);
-}
-
-@media (min-width: 640px) {
-  .loadingNumbers {
-    gap: 1rem;
-  }
-
-  .loadingDigits {
+  .number {
     font-size: 36px;
-    min-width: 50px;
-    padding: 20px 15px;
+    min-width: 70px;
+    padding: 20px;
   }
 
-  .loadingLabel {
+  .label {
     font-size: 12px;
   }
 } 
