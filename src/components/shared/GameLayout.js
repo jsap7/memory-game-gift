@@ -9,7 +9,9 @@ const GameLayout = ({ children, title }) => {
           <BackButton />
         </div>
         
-        <FlipTimer />
+        <div className="fade-in">
+          <FlipTimer />
+        </div>
         
         <h1 className="page-title slide-up">{title}</h1>
         
