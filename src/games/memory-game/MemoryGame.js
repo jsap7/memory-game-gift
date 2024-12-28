@@ -3,6 +3,8 @@
 import React, { useState, useEffect } from 'react';
 import { Heart } from 'lucide-react';
 import WinPopup from './WinPopup';
+import FlipTimer from './FlipTimer';
+import styles from './MemoryGame.module.css';
 
 const MemoryGame = () => {
   const initialCards = [
@@ -87,60 +89,56 @@ const MemoryGame = () => {
   };
 
   return (
-    <div>
-      <div className="text-center mb-6">
-        <h1 className="text-xl sm:text-3xl font-bold mb-2 sm:mb-4 text-pink-600 flex items-center justify-center gap-2">
-          <Heart className="text-pink-500 w-4 h-4 sm:w-5 sm:h-5" />
-          Remy Memy Game
-          <Heart className="text-pink-500 w-4 h-4 sm:w-5 sm:h-5" />
-        </h1>
-        <button 
-          onClick={shuffleCards}
-          className="bg-pink-500 hover:bg-pink-600 text-white px-3 py-1.5 sm:px-4 sm:py-2 text-sm sm:text-base rounded-md transition-colors"
-        >
-          New Game
-        </button>
-      </div>
+    <>
+      <div className={styles.container}>
+        <div className={styles.header}>
+          <h1 className={styles.title}>
+            <Heart className="w-6 h-6 sm:w-8 sm:h-8 text-pink-500" />
+            Remy Memy Game
+            <Heart className="w-6 h-6 sm:w-8 sm:h-8 text-pink-500" />
+          </h1>
+          <FlipTimer />
+          <div className={styles.stats}>
+            Turns: {turns}
+          </div>
+          <button 
+            onClick={shuffleCards}
+            className={styles.button}
+          >
+            New Game
+          </button>
+        </div>
 
-      <div className="grid grid-cols-4 sm:grid-cols-5 gap-1.5 sm:gap-3 card-grid">
-        {cards.map(card => (
-          <div key={card.id} className="aspect-square">
-            <div
-              className={`relative w-full h-full cursor-pointer transition-all duration-300 transform preserve-3d
-                ${card.matched ? 'card-matched opacity-70' : ''}`}
-              onClick={() => handleChoice(card)}
-            >
-              <div 
-                className={`absolute w-full h-full backface-hidden transition-transform duration-500
-                  ${isFlipped(card) ? 'rotate-y-0' : 'rotate-y-180'}`}
+        <div className={styles.grid}>
+          {cards.map(card => (
+            <div key={card.id} className={styles.card}>
+              <div
+                className={`${styles.cardInner} ${isFlipped(card) ? styles.flipped : ''}`}
+                onClick={() => !card.matched && handleChoice(card)}
               >
-                <img
-                  src={card.img}
-                  alt="Memory Card"
-                  className="w-full h-full object-cover rounded-md sm:rounded-lg border border-pink-300 sm:border-2"
-                  loading="eager"
-                />
-              </div>
-              <div 
-                className={`absolute w-full h-full backface-hidden transition-transform duration-500 bg-gradient-to-br from-pink-100 to-pink-200 rounded-md sm:rounded-lg border border-pink-300 sm:border-2 flex items-center justify-center
-                  ${isFlipped(card) ? 'rotate-y-180' : 'rotate-y-0'}`}
-              >
-                <Heart className="w-8 h-8 text-pink-400" />
+                <div className={styles.cardFront}>
+                  <img
+                    src={card.img}
+                    alt="Memory Card"
+                    loading="eager"
+                  />
+                </div>
+                <div className={styles.cardBack}>
+                  <Heart className="w-8 h-8 text-pink-400" />
+                </div>
               </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
-
-      <p className="text-center mt-3 sm:mt-4 text-sm sm:text-base text-pink-600">Turns: {turns}</p>
-
+      
       {hasWon && (
         <WinPopup
           turns={turns}
           onPlayAgain={shuffleCards}
         />
       )}
-    </div>
+    </>
   );
 };
 

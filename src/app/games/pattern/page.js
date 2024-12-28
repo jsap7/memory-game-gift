@@ -1,46 +1,28 @@
 'use client';
 
-import Link from 'next/link';
-import { Heart } from 'lucide-react';
-import PragueTimer from '@/components/PragueTimer';
 import PatternGame from '@/games/pattern-game/PatternGame';
+import FlipTimer from '@/games/memory-game/FlipTimer';
+import Link from 'next/link';
+import { ArrowLeft } from 'lucide-react';
 
 export default function PatternGamePage() {
   return (
-    <main className="min-h-screen bg-[#F5F5F1] p-4">
-      <div className="max-w-5xl mx-auto">
-        <PragueTimer />
-        
-        <div className="flex justify-center gap-4 mb-8">
-          <Link 
-            href="/"
-            className="bg-white text-pink-600 px-4 py-2 rounded-md hover:bg-pink-50 transition-colors border border-pink-200"
-          >
-            Remy Memy Game
+    <div className="app-container">
+      <div className="content-wrapper">
+        <div className="nav-container fade-in">
+          <Link href="/" className="back-button">
+            <ArrowLeft />
+            Back to Games
           </Link>
-          <Link 
-            href="/games/quiz"
-            className="bg-white text-pink-600 px-4 py-2 rounded-md hover:bg-pink-50 transition-colors border border-pink-200"
-          >
-            Josh Quiz Game
-          </Link>
-          <Link 
-            href="/games/pattern"
-            className="bg-pink-500 text-white px-4 py-2 rounded-md hover:bg-pink-600 transition-colors"
-          >
-            Pattern Game
-          </Link>
-
-          <Link 
-            href="/games/wordle"
-            className="bg-white text-pink-600 px-4 py-2 rounded-md hover:bg-pink-50 transition-colors border border-pink-200"
-          >
-            Wordle
-          </Link>
+          <FlipTimer />
         </div>
-
-        <PatternGame />
+        
+        <h1 className="page-title slide-up">Pattern Game</h1>
+        
+        <div className="fade-in">
+          <PatternGame />
+        </div>
       </div>
-    </main>
+    </div>
   );
 } 

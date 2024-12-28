@@ -1,45 +1,38 @@
 'use client';
 
 import Link from 'next/link';
-import { Heart } from 'lucide-react';
-import PragueTimer from '@/components/PragueTimer';
-import MemoryGame from '@/games/memory-game/MemoryGame';
+import FlipTimer from '@/games/memory-game/FlipTimer';
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-[#F5F5F1] p-4">
-      <div className="max-w-5xl mx-auto">
-        <PragueTimer />
+    <div className="app-container">
+      <div className="content-wrapper">
+        <FlipTimer />
         
-        <div className="flex justify-center gap-4 mb-8">
-          <Link 
-            href="/"
-            className="bg-pink-500 text-white px-4 py-2 rounded-md hover:bg-pink-600 transition-colors"
-          >
-            Remy Memy Game
+        <h1 className="page-title slide-up">Gigi's Games</h1>
+        
+        <div className="games-grid fade-in">
+          <Link href="/games/memory" className="game-card">
+            <h2>Remy Memy Game</h2>
+            <p>Match pairs of cute pictures in this memory challenge!</p>
           </Link>
-          <Link 
-            href="/games/quiz"
-            className="bg-white text-pink-600 px-4 py-2 rounded-md hover:bg-pink-50 transition-colors border border-pink-200"
-          >
-            Josh Quiz Game
+          
+          <Link href="/games/quiz" className="game-card">
+            <h2>Josh Quiz Game</h2>
+            <p>Test your knowledge with fun trivia questions.</p>
           </Link>
-          <Link 
-            href="/games/pattern"
-            className="bg-white text-pink-600 px-4 py-2 rounded-md hover:bg-pink-50 transition-colors border border-pink-200"
-          >
-            Pattern Game
+          
+          <Link href="/games/pattern" className="game-card">
+            <h2>Pattern Game</h2>
+            <p>Follow the sequence and repeat the pattern.</p>
           </Link>
-          <Link 
-            href="/games/wordle"
-            className="bg-white text-pink-600 px-4 py-2 rounded-md hover:bg-pink-50 transition-colors border border-pink-200"
-          >
-            Wordle
+          
+          <Link href="/games/wordle" className="game-card">
+            <h2>Wordle</h2>
+            <p>Guess the five-letter word in six tries or less.</p>
           </Link>
         </div>
-
-        <MemoryGame />
       </div>
-    </main>
+    </div>
   );
 }
