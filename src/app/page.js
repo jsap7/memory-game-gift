@@ -59,12 +59,12 @@ export default function Home() {
         <div className="games-grid fade-in">
           <Link href="/games/memory" className="game-card" style={{ '--animation-order': 0 }}>
             <h2>Remy Memy Game</h2>
-            <p>Match pairs of cute pictures in this memory challenge!</p>
+            <p>Match pairs of Remy and Pookie pics in this memory challenge!</p>
           </Link>
           
           <Link href="/games/quiz" className="game-card" style={{ '--animation-order': 1 }}>
             <h2>Josh Quiz Game</h2>
-            <p>Test your knowledge with fun trivia questions.</p>
+            <p>Test your knowledge on Joshua himself and our first times together.</p>
           </Link>
           
           <Link href="/games/pattern" className="game-card" style={{ '--animation-order': 2 }}>
