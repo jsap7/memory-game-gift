@@ -102,6 +102,13 @@ export default function Home() {
             description="Whack the emojis as they pop up to score points!"
             animationOrder={4}
           />
+
+          <GameCard
+            href="/games/crossword"
+            title="Geography Crossword"
+            description="Test your geography knowledge and Josh's football favorites!"
+            animationOrder={5}
+          />
         </div>
       </div>
 

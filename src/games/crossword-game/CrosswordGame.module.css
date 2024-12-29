@@ -1,0 +1,246 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.timer {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 20px;
+  padding: 15px 30px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.timerBlock {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 60px;
+}
+
+.timerDigit {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #333;
+  font-variant-numeric: tabular-nums;
+}
+
+.timerLabel {
+  font-size: 0.75rem;
+  color: #666;
+  text-transform: uppercase;
+  margin-top: 4px;
+}
+
+.gameLayout {
+  display: flex;
+  gap: 40px;
+  width: 100%;
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.grid {
+  flex: 1;
+  position: relative;
+  min-height: 600px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  padding: 20px;
+  border: 2px solid #ddd;
+}
+
+.word {
+  position: absolute;
+  display: flex;
+}
+
+.across {
+  flex-direction: row;
+}
+
+.down {
+  flex-direction: column;
+}
+
+.cell {
+  width: 40px;
+  height: 40px;
+  border: 1px solid #333;
+  background: white;
+  font-size: 1.5rem;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: bold;
+  padding: 0;
+  margin: 0;
+  outline: none;
+}
+
+.cell:focus {
+  background: #e0f2fe;
+  border: 2px solid #0ea5e9;
+}
+
+.cell.selected {
+  background: #e0f2fe;
+}
+
+.number {
+  position: absolute;
+  top: -8px;
+  left: -8px;
+  font-size: 0.75rem;
+  font-weight: bold;
+  color: #333;
+  background: transparent;
+  z-index: 1;
+}
+
+.clues {
+  flex: 1;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  overflow-y: auto;
+}
+
+.clueSection {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.clueSection h3 {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.clue {
+  padding: 8px 12px;
+  background: #f5f5f5;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.clue:hover {
+  background: #e0e0e0;
+}
+
+.clue.selected {
+  background: #e0f2fe;
+  font-weight: bold;
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 400px;
+  font-size: 1.2rem;
+  color: #666;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  animation: fadeIn 0.3s ease-out;
+}
+
+.modalContent {
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  text-align: center;
+  max-width: 400px;
+  width: 90%;
+  animation: slideUp 0.3s ease-out;
+}
+
+.modalContent h2 {
+  font-size: 1.8rem;
+  color: #166534;
+  margin-bottom: 16px;
+}
+
+.modalContent p {
+  color: #333;
+  font-size: 1.1rem;
+  margin-bottom: 12px;
+}
+
+.completionTime {
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: #166534;
+  margin: 20px 0;
+}
+
+.modalButton {
+  background: #166534;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.modalButton:hover {
+  background: #15803d;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.6;
+  }
+} 
