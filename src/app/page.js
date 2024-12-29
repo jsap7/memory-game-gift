@@ -105,8 +105,8 @@ export default function Home() {
 
           <GameCard
             href="/games/crossword"
-            title="Geography Crossword"
-            description="Test your geography knowledge and Josh's football favorites!"
+            title="Man City Crossword"
+            description="Test Josh's football favorites!"
             animationOrder={5}
           />
         </div>
