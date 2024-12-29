@@ -5,48 +5,59 @@ import FlipTimer from '@/components/shared/FlipTimer';
 import SpotifyPlayer from '@/components/shared/SpotifyPlayer';
 import { useEffect, useState } from 'react';
 
-const Sparkle = ({ style }) => (
-  <div
-    style={{
-      position: 'fixed',
-      pointerEvents: 'none',
-      width: '10px',
-      height: '10px',
-      background: 'white',
-      borderRadius: '50%',
-      ...style
-    }}
-  />
-);
+const GameCard = ({ href, title, description, animationOrder }) => {
+  const handleRipple = (e) => {
+    const card = e.currentTarget;
+    const circle = document.createElement('div');
+    const rect = card.getBoundingClientRect();
+    
+    circle.style.width = circle.style.height = Math.max(rect.width, rect.height) + 'px';
+    circle.style.left = e.clientX - rect.left - (circle.offsetWidth / 2) + 'px';
+    circle.style.top = e.clientY - rect.top - (circle.offsetHeight / 2) + 'px';
+    circle.classList.add('ripple');
+
+    const ripple = card.getElementsByClassName('ripple')[0];
+    if (ripple) {
+      ripple.remove();
+    }
+
+    card.appendChild(circle);
+  };
+
+  return (
+    <Link 
+      href={href} 
+      className="game-card" 
+      style={{ '--animation-order': animationOrder }}
+      onClick={handleRipple}
+    >
+      <h2>{title}</h2>
+      <p>{description}</p>
+    </Link>
+  );
+};
 
 export default function Home() {
-  const [sparkles, setSparkles] = useState([]);
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [bubbles, setBubbles] = useState([]);
 
   useEffect(() => {
-    const handleMouseMove = (e) => {
-      setMousePosition({ x: e.clientX, y: e.clientY });
-      
-      // Create a new sparkle
-      const sparkle = {
+    const createBubble = () => {
+      const bubble = {
         id: Date.now(),
-        x: e.clientX,
-        y: e.clientY,
-        size: Math.random() * 15 + 5,
-        opacity: 1,
-        color: `rgba(255, ${Math.random() * 100 + 100}, ${Math.random() * 100 + 100}, ${Math.random() * 0.5 + 0.5})`
+        size: Math.random() * 20 + 10,
+        x: Math.random() * window.innerWidth,
+        offset: Math.random() * 100 - 50 // Random X offset for floating
       };
 
-      setSparkles(prev => [...prev, sparkle]);
+      setBubbles(prev => [...prev, bubble]);
 
-      // Remove sparkle after animation
       setTimeout(() => {
-        setSparkles(prev => prev.filter(s => s.id !== sparkle.id));
-      }, 1000);
+        setBubbles(prev => prev.filter(b => b.id !== bubble.id));
+      }, 4000);
     };
 
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
+    const interval = setInterval(createBubble, 300);
+    return () => clearInterval(interval);
   }, []);
 
   return (
@@ -57,41 +68,54 @@ export default function Home() {
         <h1 className="page-title slide-up">Gigi's Games</h1>
         
         <div className="games-grid fade-in">
-          <Link href="/games/memory" className="game-card" style={{ '--animation-order': 0 }}>
-            <h2>Remy Memy Game</h2>
-            <p>Match pairs of cute pictures in this memory challenge!</p>
-          </Link>
+          <GameCard
+            href="/games/memory"
+            title="Remy Memy Game"
+            description="Match pairs of cute pictures in this memory challenge!"
+            animationOrder={0}
+          />
           
-          <Link href="/games/quiz" className="game-card" style={{ '--animation-order': 1 }}>
-            <h2>Josh Quiz Game</h2>
-            <p>Test your knowledge with fun trivia questions.</p>
-          </Link>
+          <GameCard
+            href="/games/quiz"
+            title="Josh Quiz Game"
+            description="Test your knowledge with fun trivia questions."
+            animationOrder={1}
+          />
           
-          <Link href="/games/pattern" className="game-card" style={{ '--animation-order': 2 }}>
-            <h2>Pattern Game</h2>
-            <p>Follow the sequence and repeat the pattern.</p>
-          </Link>
+          <GameCard
+            href="/games/pattern"
+            title="Pattern Game"
+            description="Follow the sequence and repeat the pattern."
+            animationOrder={2}
+          />
           
-          <Link href="/games/wordle" className="game-card" style={{ '--animation-order': 3 }}>
-            <h2>Wordle</h2>
-            <p>Guess the five-letter word in six tries or less.</p>
-          </Link>
+          <GameCard
+            href="/games/wordle"
+            title="Wordle"
+            description="Guess the five-letter word in six tries or less."
+            animationOrder={3}
+          />
+
+          <GameCard
+            href="/games/whack"
+            title="Whack-an-Emoji"
+            description="Whack the emojis as they pop up to score points!"
+            animationOrder={4}
+          />
         </div>
       </div>
 
       <SpotifyPlayer />
 
-      {sparkles.map(sparkle => (
-        <Sparkle
-          key={sparkle.id}
+      {bubbles.map(bubble => (
+        <div
+          key={bubble.id}
+          className="bubble"
           style={{
-            left: sparkle.x,
-            top: sparkle.y,
-            width: sparkle.size,
-            height: sparkle.size,
-            background: sparkle.color,
-            transform: 'translate(-50%, -50%)',
-            animation: 'sparkle 1s forwards'
+            width: bubble.size,
+            height: bubble.size,
+            left: bubble.x,
+            '--bubble-x': `${bubble.offset}px`
           }}
         />
       ))}
