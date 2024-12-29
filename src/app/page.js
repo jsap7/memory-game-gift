@@ -68,6 +68,7 @@ export default function Home() {
         <h1 className="page-title slide-up">Gigi's Games</h1>
         
         <div className="games-grid fade-in">
+<<<<<<< HEAD
           <GameCard
             href="/games/memory"
             title="Remy Memy Game"
@@ -81,6 +82,17 @@ export default function Home() {
             description="Test your knowledge with fun trivia questions."
             animationOrder={1}
           />
+=======
+          <Link href="/games/memory" className="game-card" style={{ '--animation-order': 0 }}>
+            <h2>Remy Memy Game</h2>
+            <p>Match pairs of Remy and Pookie pics in this memory challenge!</p>
+          </Link>
+          
+          <Link href="/games/quiz" className="game-card" style={{ '--animation-order': 1 }}>
+            <h2>Josh Quiz Game</h2>
+            <p>Test your knowledge on Joshua himself and our first times together.</p>
+          </Link>
+>>>>>>> 2c09ca9c0729e4c99c22509b4da8472384cb1f7d
           
           <GameCard
             href="/games/pattern"
