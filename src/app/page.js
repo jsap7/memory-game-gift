@@ -4,6 +4,7 @@ import Link from 'next/link';
 import FlipTimer from '@/components/shared/FlipTimer';
 import SpotifyPlayer from '@/components/shared/SpotifyPlayer';
 import { useEffect, useState } from 'react';
+import { Analytics } from '@vercel/analytics/react';
 
 const GameCard = ({ href, title, description, animationOrder }) => {
   const handleRipple = (e) => {
@@ -126,6 +127,8 @@ export default function Home() {
           }}
         />
       ))}
+
+      <Analytics />
     </div>
   );
 }

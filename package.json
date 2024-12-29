@@ -12,6 +12,7 @@
     "@hookform/resolvers": "^3.9.1",
     "@leenguyen/react-flip-clock-countdown": "^1.6.0",
     "@radix-ui/react-slot": "^1.1.1",
+    "@vercel/analytics": "^1.4.1",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "crossword-layout-generator": "^0.1.1",
