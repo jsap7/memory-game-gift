@@ -10,28 +10,28 @@ const SHAPES = [
     icon: Heart, 
     color: 'text-red-500', 
     activeClass: styles.redActive,
-    sound: '/assets/hi.mp3'
+    sound: '/games/pattern/sounds/hi.mp3'
   },
   { 
     id: 1, 
     icon: Star, 
     color: 'text-yellow-500', 
     activeClass: styles.yellowActive,
-    sound: '/assets/quack.mp3'
+    sound: '/games/pattern/sounds/quack.mp3'
   },
   { 
     id: 2, 
     icon: Music, 
     color: 'text-green-500', 
     activeClass: styles.greenActive,
-    sound: '/assets/fuck.mp3'
+    sound: '/games/pattern/sounds/fuck.mp3'
   },
   { 
     id: 3, 
     icon: Sparkle, 
     color: 'text-blue-500', 
     activeClass: styles.blueActive,
-    sound: '/assets/rizz.mp3'
+    sound: '/games/pattern/sounds/rizz.mp3'
   }
 ];
 
@@ -67,8 +67,8 @@ const PatternGame = () => {
 
     setAudioElements(shapeAudio);
     setGameAudio({
-      victory: new Audio('/assets/outro.mp3'),
-      failure: new Audio('/assets/meow.mp3')
+      victory: new Audio('/games/pattern/sounds/outro.mp3'),
+      failure: new Audio('/games/pattern/sounds/meow.mp3')
     });
   }, []);
 

@@ -6,17 +6,17 @@ import WinPopup from './WinPopup';
 import styles from './MemoryGame.module.css';
 
 const MemoryGame = () => {
-  const initialCards = [
-    { id: 1, img: '/assets/image1.png', matched: false },
-    { id: 2, img: '/assets/image2.png', matched: false },
-    { id: 3, img: '/assets/image3.png', matched: false },
-    { id: 4, img: '/assets/image4.png', matched: false },
-    { id: 5, img: '/assets/image5.png', matched: false },
-    { id: 6, img: '/assets/image6.png', matched: false },
-    { id: 7, img: '/assets/image7.png', matched: false },
-    { id: 8, img: '/assets/image8.png', matched: false },
-    { id: 9, img: '/assets/image9.png', matched: false },
-    { id: 10, img: '/assets/image10.png', matched: false },
+  const cardImages = [
+    { id: 1, img: '/games/memory/images/image1.png', matched: false },
+    { id: 2, img: '/games/memory/images/image2.png', matched: false },
+    { id: 3, img: '/games/memory/images/image3.png', matched: false },
+    { id: 4, img: '/games/memory/images/image4.png', matched: false },
+    { id: 5, img: '/games/memory/images/image5.png', matched: false },
+    { id: 6, img: '/games/memory/images/image6.png', matched: false },
+    { id: 7, img: '/games/memory/images/image7.png', matched: false },
+    { id: 8, img: '/games/memory/images/image8.png', matched: false },
+    { id: 9, img: '/games/memory/images/image9.png', matched: false },
+    { id: 10, img: '/games/memory/images/image10.png', matched: false },
   ];
 
   const [cards, setCards] = useState([]);
@@ -31,7 +31,7 @@ const MemoryGame = () => {
   }, []);
 
   const shuffleCards = () => {
-    const shuffledCards = [...initialCards, ...initialCards]
+    const shuffledCards = [...cardImages, ...cardImages]
       .sort(() => Math.random() - 0.5)
       .map((card) => ({ ...card, id: Math.random() }));
 

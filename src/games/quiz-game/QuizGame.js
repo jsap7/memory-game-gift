@@ -8,21 +8,20 @@ const questions = [
   {
     id: 1,
     question: "What were you asked to hold?",
-    image: "/assets/holdit.jpg", // Optional image
+    image: "/games/quiz/images/holdit.jpg",
     options: [
       "Jacket",
       "Pool Stick",
       "Hat",
       "Drink"
     ],
-    correctAnswer: 2, // Index of correct answer
-    explanation: "Brendan asked you to hold his hat, and I said 'Hold it bitch!'" // Optional explanation
-
+    correctAnswer: 2,
+    explanation: "Brendan asked you to hold his hat, and I said 'Hold it bitch!'"
   },
   {
     id: 2,
     question: "What was the first movie we watched together (that you didnt fall asleep for)?",
-    image: "/assets/nwoo.jpg", // Optional image
+    image: "/games/quiz/images/nwoo.jpg", // Optional image
     options: [
       "Interstellar",
       "Cloudy with a Chance of Meatballs 2",
@@ -35,7 +34,7 @@ const questions = [
   {
     id: 3,
     question: "What did we share on our first date?",
-    image: "/assets/salt-line.jpg", // Optional image
+    image: "/games/quiz/images/salt-line.jpg", // Optional image
     options: [
       "Crab Dip",
       "Ice Cream",
@@ -49,7 +48,7 @@ const questions = [
   {
     id: 4,
     question: "What was my street name in Baltimore?",
-    image: "/assets/bmore.png", // Optional image
+    image: "/games/quiz/images/bmore.png", // Optional image
     options: [
       "Da Hood",
       "Hamburger",
@@ -63,7 +62,7 @@ const questions = [
   {
     id: 5,
     question: "What's my go to fast food?",
-    image: "/assets/fat-guy.png", // Optional image
+    image: "/games/quiz/images/fat-guy.png", // Optional image
     options: [
       "Wendys",
       "Chick-fil-a",
@@ -77,7 +76,7 @@ const questions = [
   {
     id: 6,
     question: "What were you boutta yell at me after this picture?",
-    image: "/assets/enuf.png", // Optional image
+    image: "/games/quiz/images/enuf.png", // Optional image
     options: [
       "Stawppp Joshhhh",
       "Grrrrrr",
@@ -92,7 +91,7 @@ const questions = [
   {
     id: 7,
     question: "What was the species of the cool clownfish I had?",
-    image: "/assets/blackstorm.jpg", // Optional image
+    image: "/games/quiz/images/blackstorm.jpg", // Optional image
     options: [
       "Clownfish",
       "Storm Trooper",
@@ -106,7 +105,7 @@ const questions = [
   {
     id: 8,
     question: "What position did I play in soccer?",
-    image: "/assets/soccer.jpg", // Optional image
+    image: "/games/quiz/images/soccer.jpg", // Optional image
     options: [
       "Left Back",
       "Right Back",
@@ -120,7 +119,7 @@ const questions = [
   {
     id: 9,
     question: "How did they spell Lovie in ur book?",
-    image: "/assets/lovie.jpg", // Optional image
+    image: "/games/quiz/images/lovie.jpg", // Optional image
     options: [
       "Lovie",
       "Louis",
@@ -134,7 +133,7 @@ const questions = [
   {
     id: 10,
     question: "Who is my favorite person in the whole world?",
-    image: "/assets/you.jpg", // Optional image
+    image: "/games/quiz/images/you.jpg", // Optional image
     options: [
       "You",
       "Me",
