@@ -57,9 +57,17 @@ const PatternGame = () => {
   const [showModal, setShowModal] = useState(false);
   const [audioElements, setAudioElements] = useState({});
   const [gameAudio, setGameAudio] = useState({ victory: null, failure: null });
+  const [isClient, setIsClient] = useState(false);
+
+  // Check if we're on the client
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
   // Initialize audio on client side only
   useEffect(() => {
+    if (!isClient) return;
+
     const shapeAudio = SHAPES.reduce((acc, shape) => {
       acc[shape.id] = new Audio(shape.sound);
       return acc;
@@ -70,11 +78,12 @@ const PatternGame = () => {
       victory: new Audio('/games/pattern/sounds/outro.mp3'),
       failure: new Audio('/games/pattern/sounds/meow.mp3')
     });
-  }, []);
+  }, [isClient]);
 
   const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
   const playSound = (shapeId) => {
+    if (!isClient) return;
     if (audioElements[shapeId]) {
       audioElements[shapeId].currentTime = 0;
       audioElements[shapeId].play();
