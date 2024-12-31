@@ -38,6 +38,51 @@ const GameCard = ({ href, title, description, animationOrder }) => {
   );
 };
 
+const games = [
+  {
+    title: "Memory Game",
+    description: "Test your memory by matching pairs of cards with our cute pictures!",
+    href: "/games/memory",
+    animationOrder: 0
+  },
+  {
+    title: "Quiz Game",
+    description: "Answer questions about our favorite memories together!",
+    href: "/games/quiz",
+    animationOrder: 1
+  },
+  {
+    title: "Pattern Game",
+    description: "Remember and repeat the pattern of shapes and sounds!",
+    href: "/games/pattern",
+    animationOrder: 2
+  },
+  {
+    title: "Wordle Game",
+    description: "Guess the 5-letter word in 6 tries or less!",
+    href: "/games/wordle",
+    animationOrder: 3
+  },
+  {
+    title: "Whack Game",
+    description: "Whack as many moles as you can in 30 seconds!",
+    href: "/games/whack",
+    animationOrder: 4
+  },
+  {
+    title: "Crossword Game",
+    description: "Solve the crossword puzzle about Josh's favorite things!",
+    href: "/games/crossword",
+    animationOrder: 5
+  },
+  {
+    title: "2024 Events Quiz",
+    description: "Test your knowledge of 2024 events against the clock!",
+    href: "/games/quizup",
+    animationOrder: 6
+  }
+];
+
 export default function Home() {
   const [bubbles, setBubbles] = useState([]);
 
@@ -109,6 +154,13 @@ export default function Home() {
             title="Man City Crossword"
             description="Test Josh's football favorites!"
             animationOrder={5}
+          />
+
+          <GameCard
+            href="/games/quizup"
+            title="2024 Events Quiz"
+            description="Test your knowledge of 2024 events against the clock!"
+            animationOrder={6}
           />
         </div>
       </div>
