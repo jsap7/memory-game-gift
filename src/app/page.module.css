@@ -1,0 +1,51 @@
+.games-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.games-grid a {
+  display: block;
+  padding: 1.5rem;
+  border-radius: var(--radius-lg);
+  background: white;
+  box-shadow: var(--shadow-md);
+  transition: all 0.2s ease;
+}
+
+.games-grid a:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.games-grid h2 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 0.5rem;
+}
+
+.games-grid p {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+@media (max-width: 768px) {
+  .games-grid {
+    grid-template-columns: 1fr;
+    padding: 0.5rem;
+  }
+  
+  .games-grid a {
+    padding: 1rem;
+  }
+  
+  .games-grid h2 {
+    font-size: 1.1rem;
+  }
+  
+  .games-grid p {
+    font-size: 0.85rem;
+  }
+} 
