@@ -1,0 +1,285 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.stats {
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: var(--primary-dark);
+}
+
+.modeButtons {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
+.modeButton {
+  padding: 0.5rem 1rem;
+  border: 2px solid var(--primary);
+  border-radius: var(--radius-md);
+  background: white;
+  color: var(--primary);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.modeButton:hover {
+  background: var(--primary-light);
+  transform: translateY(-2px);
+}
+
+.modeButton.active {
+  background: var(--primary);
+  color: white;
+}
+
+.controls {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.button, .previewButton {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.button {
+  background: var(--primary);
+  color: white;
+}
+
+.button:hover {
+  background: var(--primary-dark);
+  transform: translateY(-2px);
+}
+
+.previewButton {
+  background: white;
+  color: var(--primary);
+  border: 2px solid var(--primary);
+}
+
+.previewButton:hover {
+  background: var(--primary-light);
+  color: var(--primary-dark);
+}
+
+.puzzleContainer {
+  position: relative;
+  margin: 0 auto;
+  background: white;
+  border-radius: var(--radius-lg);
+  padding: 1rem;
+  box-shadow: var(--shadow-md);
+  width: 100%;
+  max-width: 500px;
+}
+
+.puzzle {
+  position: relative;
+  width: 100%;
+  padding-bottom: 100%;
+  background: #f0f0f0;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.tile {
+  position: absolute;
+  border: 2px solid white;
+  background-color: white;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  background-repeat: no-repeat;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.tile:hover {
+  filter: brightness(1.1);
+}
+
+.tileNumber {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: white;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+  pointer-events: none;
+}
+
+.previewBackdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 99;
+  animation: fadeIn 0.2s ease;
+}
+
+.preview {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: min(80vw, 400px);
+  height: min(80vw, 400px);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  z-index: 100;
+  animation: fadeIn 0.3s ease;
+  background: white;
+  padding: 1rem;
+}
+
+.previewImage {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: var(--radius-sm);
+}
+
+.victory {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 2rem;
+  border-radius: var(--radius-lg);
+  text-align: center;
+  box-shadow: var(--shadow-lg);
+  animation: slideUp 0.5s ease;
+  z-index: 100;
+}
+
+.victory h2 {
+  font-size: 2rem;
+  color: var(--primary);
+  margin-bottom: 1rem;
+}
+
+.victory p {
+  font-size: 1.25rem;
+  color: var(--text);
+  margin-bottom: 1.5rem;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translate(-50%, 20px);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 1rem;
+  }
+
+  .header {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .modeButtons {
+    order: -1;
+    width: 100%;
+  }
+
+  .controls {
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .button, .previewButton {
+    width: 100%;
+    text-align: center;
+  }
+
+  .preview {
+    width: 95vw;
+    height: 95vw;
+    padding: 0.5rem;
+  }
+
+  .tileNumber {
+    font-size: calc(1rem + 1vw);
+  }
+
+  .victory {
+    width: 90vw;
+    max-width: 400px;
+    padding: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 0.5rem;
+  }
+
+  .header {
+    gap: 1rem;
+  }
+
+  .modeButtons {
+    flex-wrap: wrap;
+  }
+
+  .modeButton {
+    flex: 1;
+    min-width: 80px;
+    padding: 0.5rem;
+    font-size: 0.9rem;
+  }
+
+  .tileNumber {
+    font-size: calc(0.8rem + 1vw);
+  }
+
+  .victory h2 {
+    font-size: 1.5rem;
+  }
+
+  .victory p {
+    font-size: 1rem;
+  }
+} 

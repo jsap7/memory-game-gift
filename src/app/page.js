@@ -162,6 +162,13 @@ export default function Home() {
             description="Test your knowledge of 2024 events against the clock!"
             animationOrder={6}
           />
+
+          <GameCard
+            href="/games/sliding"
+            title="Sliding Puzzle"
+            description="Rearrange the tiles to complete the picture!"
+            animationOrder={7}
+          />
         </div>
       </div>
 
