@@ -119,12 +119,23 @@ export default function Home() {
         {/* Travel Map Section */}
         <button 
           onClick={() => window.location.href = '/world-map'} 
-          className="travel-button"
+          className="travel-button world-map"
         >
           <h2>The Travel Map</h2>
           <p>"Oh, the places you'll go!"</p>
           <div className="travel-icons">
             🗺️ ✈️ 🌎 🧭
+          </div>
+        </button>
+
+        <button 
+          onClick={() => window.location.href = '/us-map'} 
+          className="travel-button us-map"
+        >
+          <h2>US States Map</h2>
+          <p>"From sea to shining sea!"</p>
+          <div className="travel-icons">
+            🗽 🌄 🏖️ 🏔️
           </div>
         </button>
       </div>
@@ -257,7 +268,6 @@ export default function Home() {
         .travel-button {
           width: 100%;
           padding: 1.5rem;
-          background: linear-gradient(135deg, #FF4081 0%, #AE6EE7 100%);
           border: none;
           border-radius: 15px;
           color: white;
@@ -266,11 +276,12 @@ export default function Home() {
           margin-top: 1rem;
         }
 
-        @media (min-width: 768px) {
-          .travel-button {
-            padding: 2rem;
-            border-radius: 20px;
-          }
+        .travel-button.world-map {
+          background: linear-gradient(135deg, #FF4081 0%, #AE6EE7 100%);
+        }
+
+        .travel-button.us-map {
+          background: linear-gradient(135deg, #2196F3 0%, #00BCD4 100%);
         }
 
         .travel-button h2 {
