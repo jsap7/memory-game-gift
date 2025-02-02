@@ -112,6 +112,13 @@ export default function Home() {
                 description="Rearrange the tiles to complete the picture!"
                 animationOrder={7}
               />
+
+              <GameCard
+                href="/games/states"
+                title="State Guesser"
+                description="Test your US geography knowledge! Click the correct state to score points."
+                animationOrder={8}
+              />
             </div>
           )}
         </div>
