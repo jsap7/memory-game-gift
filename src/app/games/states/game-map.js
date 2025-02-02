@@ -34,8 +34,9 @@ export default function GameMap({ onStateClick, correctGuesses = [], gameStatus 
         attributionControl: false
       });
 
-      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '© OpenStreetMap contributors'
+      // Use CartoDB Positron tileset without labels
+      L.tileLayer('https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
       }).addTo(mapRef.current);
 
       const attribution = L.control.attribution({

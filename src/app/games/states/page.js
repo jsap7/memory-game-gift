@@ -57,6 +57,7 @@ export default function StatesGame() {
   const [feedback, setFeedback] = useState('');
   const [remainingStates, setRemainingStates] = useState([]);
   const [correctGuesses, setCorrectGuesses] = useState([]);
+  const [showPenalty, setShowPenalty] = useState(false);
 
   // Timer effect
   useEffect(() => {
@@ -117,8 +118,13 @@ export default function StatesGame() {
         nextState();
       }, 1000);
     } else {
-      setTime(prev => prev + 5); // 5 second penalty
-      setFeedback(`Wrong! That was ${statesList.find(s => s.code === stateCode)?.name}. +5 second penalty!`);
+      setTime(prev => prev + 5);
+      setShowPenalty(true);
+      setFeedback(`Wrong! That was ${statesList.find(s => s.code === stateCode)?.name}`);
+      
+      setTimeout(() => {
+        setShowPenalty(false);
+      }, 1000);
     }
   }, [currentState, gameStatus, nextState]);
 
@@ -166,6 +172,12 @@ export default function StatesGame() {
           gameStatus={gameStatus}
         />
       </div>
+
+      {showPenalty && (
+        <div className="penalty-flash">
+          +5 SECOND PENALTY
+        </div>
+      )}
 
       <style jsx>{`
         .game-container {
@@ -258,9 +270,11 @@ export default function StatesGame() {
 
         .feedback {
           font-size: 1.2rem;
-          padding: 0.5rem 1rem;
+          padding: 0.8rem 1.5rem;
           border-radius: 8px;
           display: inline-block;
+          font-weight: 500;
+          animation: slideIn 0.3s ease-out;
         }
 
         .feedback.correct {
@@ -271,12 +285,60 @@ export default function StatesGame() {
         .feedback.wrong {
           background: #FFEBEE;
           color: #C62828;
+          border: 2px solid #EF5350;
+          animation: shake 0.5s ease-in-out;
         }
 
         .map-container {
           border-radius: 12px;
           overflow: hidden;
           box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .penalty-flash {
+          position: fixed;
+          top: 20px;
+          left: 50%;
+          transform: translateX(-50%);
+          background: rgba(198, 40, 40, 0.95);
+          color: white;
+          padding: 1rem 2rem;
+          border-radius: 8px;
+          font-weight: bold;
+          font-size: 1.2rem;
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+          z-index: 1000;
+          animation: penaltyFlash 1s ease-out;
+        }
+
+        @keyframes penaltyFlash {
+          0% { 
+            transform: translate(-50%, -100%);
+            opacity: 0;
+          }
+          15% { 
+            transform: translate(-50%, 0);
+            opacity: 1;
+          }
+          85% { 
+            transform: translate(-50%, 0);
+            opacity: 1;
+          }
+          100% { 
+            transform: translate(-50%, -100%);
+            opacity: 0;
+          }
+        }
+
+        @keyframes shake {
+          0%, 100% { transform: translateX(0); }
+          25% { transform: translateX(-5px); }
+          75% { transform: translateX(5px); }
+        }
+
+        @keyframes slideIn {
+          0% { transform: translateY(-10px); opacity: 0; }
+          100% { transform: translateY(0); opacity: 1; }
         }
 
         @media (max-width: 768px) {
